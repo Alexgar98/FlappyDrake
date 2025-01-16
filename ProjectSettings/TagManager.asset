@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Crashed
   - Success
+  - To Destroy
   layers:
   - Default
   - TransparentFX

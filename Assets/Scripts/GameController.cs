@@ -1,20 +1,24 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
     public static GameController Instance;
-    private int score;
+    private int score = 0;
+    private float multiplier = 1f;
     [SerializeField] private float timeToSpawn = 2f;
     [SerializeField] private float speed = 2f;
     [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private GameObject scoreText;
+    [SerializeField] private TMP_Text scoreText;
     [SerializeField] private GameObject obstaclePrefab;
     [SerializeField] private GameObject spawnPosition;
     [SerializeField] private GameObject destroyPosition;
 
+    public float Multiplier { get => multiplier; set => multiplier = value; }
     public int Score { get => score; set => score = value; }
-    public float Speed { get => speed; set => speed = value; }
+    public float Speed { get => speed; }
     public float TimeToSpawn { get => timeToSpawn; set => timeToSpawn = value; }
     public GameObject DestroyPosition { get => destroyPosition; }
 
@@ -25,7 +29,7 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        StartCoroutine("SpawnWall");
     }
 
     // Update is called once per frame
@@ -34,26 +38,32 @@ public class GameController : MonoBehaviour
         if (PlayerController.Instance.Dead)
         {
             gameOverScreen.SetActive(true);
-            scoreText.SetActive(false);
+            scoreText.gameObject.SetActive(false);
         }
-        else
-        {
-            //Debug.Log(speed);
-            StartCoroutine("SpawnWall");
-        }
-    }
-
-    public void AddScore(int value)
-    {
-        score += value;
     }
 
     private IEnumerator SpawnWall()
     {
-        GameObject newWall = Instantiate(obstaclePrefab, spawnPosition.transform.position, Quaternion.identity);
-        //newWall.transform.position += Vector3.left * 2 * Time.deltaTime;
-        /*if (newWall.transform.position.x - destroyPosition.transform.position.x < 0.1f)
-            Destroy(newWall);*/
-        yield return new WaitForSeconds(timeToSpawn);
+        Vector3 position;
+        float randomMovement;
+        while (!PlayerController.Instance.Dead)
+        {
+            position = spawnPosition.transform.position;
+            randomMovement = Random.Range(-2.5f, 2.5f);
+            position += (Vector3.up * randomMovement);
+            GameObject newWall = Instantiate(obstaclePrefab, position, Quaternion.identity);
+            yield return new WaitForSeconds(timeToSpawn * multiplier);
+        }
+    }
+
+    public void ResetScene()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
+    }
+
+    private void OnGUI()
+    {
+        scoreText.text = score.ToString("000");
     }
 }

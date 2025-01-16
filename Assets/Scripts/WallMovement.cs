@@ -11,8 +11,13 @@ public class WallMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.left * GameController.Instance.Speed * 10 * Time.deltaTime;
-        if (transform.position.x - GameController.Instance.DestroyPosition.transform.position.x < 0.1f)
-            Destroy(this);
+        if (!PlayerController.Instance.Dead)
+        {
+            transform.position += Vector3.left * GameController.Instance.Speed * (1 / GameController.Instance.Multiplier) * Time.deltaTime;
+            if (transform.position.x - GameController.Instance.DestroyPosition.transform.position.x < -0.1f)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
