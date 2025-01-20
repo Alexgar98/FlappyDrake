@@ -201,7 +201,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 44987839}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 371976078}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: FlightMode
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &44987839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +470,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 182594374}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 371976078}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: CreditsScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &182594374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,6 +521,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182594371}
   m_CullTransparentMesh: 1
+--- !u!1 &371976077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 371976079}
+  - component: {fileID: 371976078}
+  m_Layer: 0
+  m_Name: MenuController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &371976078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371976077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b835e93d2595ac48be5199a5f07a997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highestFlight: {fileID: 2014734058}
+  highestFire: {fileID: 812941195}
+--- !u!4 &371976079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371976077}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6732629, y: -0.14222883, z: -0.07150542}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &420343277
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,7 +936,7 @@ GameObject:
   - component: {fileID: 812941196}
   - component: {fileID: 812941195}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: HighestFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1353,7 +1423,7 @@ GameObject:
   - component: {fileID: 2014734059}
   - component: {fileID: 2014734058}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: HighestFlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1375,7 +1445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 166.4, y: -13.199997}
+  m_AnchoredPosition: {x: 166.40002, y: -13.200012}
   m_SizeDelta: {x: -640, y: -339.76242}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2014734058
@@ -1666,7 +1736,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2124617923}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 371976078}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: FireMode
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2124617923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1713,3 +1795,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 2049868949}
   - {fileID: 1652956218}
+  - {fileID: 371976079}

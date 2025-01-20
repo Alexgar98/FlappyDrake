@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
         {
             GameController.Instance.Score++;
             GameController.Instance.Multiplier /= 1.1f;
-            Debug.Log("Multiplier: " + GameController.Instance.Multiplier);
         }
     }
 

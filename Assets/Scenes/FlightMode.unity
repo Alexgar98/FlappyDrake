@@ -280,7 +280,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 70780513}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 184175263}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: GoToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &70780513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,7 +500,8 @@ MonoBehaviour:
   timeToSpawn: 3
   speed: 6
   gameOverScreen: {fileID: 1786897353}
-  scoreText: {fileID: 1310760398}
+  scoreText: {fileID: 1310760400}
+  finalScoreText: {fileID: 785324730}
   obstaclePrefab: {fileID: 3889569885971755950, guid: 4d565ca878ce5574dbd6a11f7b9e9afb, type: 3}
   spawnPosition: {fileID: 385134282}
   destroyPosition: {fileID: 516371959}
@@ -764,7 +777,7 @@ GameObject:
   - component: {fileID: 785324731}
   - component: {fileID: 785324730}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: FinalScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
