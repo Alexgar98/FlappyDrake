@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FlightMode.unity
     guid: 63f7f009b19e2f241aeb9740ba80f99a
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: 40178fc3f25cd7b418b64b03b80ac7d2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

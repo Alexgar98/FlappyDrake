@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     bool dead = false;
     private Rigidbody2D rb;
     private int jumped = 0;
+    private Animator anim;
     [SerializeField] private int jumpForce = 10;
 
     public bool Dead { get => dead; set => dead = value; }
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
         {
             dead = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            anim.speed = 0;
             //rb.bodyType = RigidbodyType2D.Kinematic;
         }
         if (collision.gameObject.tag == "Success")
