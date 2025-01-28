@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private int jumped = 0;
     private Animator anim;
+    private bool isDragging;
     [SerializeField] private int jumpForce = 10;
 
     public bool Dead { get => dead; set => dead = value; }
@@ -26,14 +29,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Touchscreen.current.primaryTouch.press.isPressed)
+        if (SceneManager.GetActiveScene().name.Equals("FlightMode"))
         {
-            jumped++;
-            Jump();
-        }
-        else
-        {
-            jumped = 0;
+            if (Touchscreen.current.primaryTouch.press.isPressed)
+            {
+                jumped++;
+                Jump();
+            }
+            else
+            {
+                jumped = 0;
+            }
         }
     }
 
@@ -44,7 +50,6 @@ public class PlayerController : MonoBehaviour
             dead = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             anim.speed = 0;
-            //rb.bodyType = RigidbodyType2D.Kinematic;
         }
         if (collision.gameObject.tag == "Success")
         {

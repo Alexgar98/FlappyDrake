@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class GameController : MonoBehaviour
 {
@@ -17,6 +16,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject obstaclePrefab;
     [SerializeField] private GameObject spawnPosition;
     [SerializeField] private GameObject destroyPosition;
+    private int birds = 10;
 
     public float Multiplier { get => multiplier; set => multiplier = value; }
     public int Score { get => score; set => score = value; }
@@ -31,20 +31,34 @@ public class GameController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (SceneManager.GetActiveScene().name.Equals("FireMode"))
+        {
+            multiplier = 0.4f;
+        }
         StartCoroutine("SpawnWall");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (PlayerController.Instance.Dead)
+        if (PlayerController.Instance.Dead || birds == 0)
         {
             gameOverScreen.SetActive(true);
             scoreText.gameObject.SetActive(false);
             finalScoreText.text = "Game Over\nYour score was " + score.ToString();
-            if (score > PlayerPrefs.GetInt("Highest Score"))
+            if (SceneManager.GetActiveScene().name.Equals("FlightMode"))
             {
-                PlayerPrefs.SetInt("Highest Score", score);
+                if (score > PlayerPrefs.GetInt("Highest Score"))
+                {
+                    PlayerPrefs.SetInt("Highest Score", score);
+                }
+            }
+            else if (SceneManager.GetActiveScene().name.Equals("FireMode"))
+            {
+                if (score > PlayerPrefs.GetInt("Highest Fire"))
+                {
+                    PlayerPrefs.SetInt("Highest Fire", score);
+                }
             }
         }
     }
@@ -53,7 +67,7 @@ public class GameController : MonoBehaviour
     {
         Vector3 position;
         float randomMovement;
-        while (!PlayerController.Instance.Dead)
+        while (!PlayerController.Instance.Dead && birds > 0)
         {
             position = spawnPosition.transform.position;
             randomMovement = Random.Range(-2.5f, 2.5f);
@@ -61,6 +75,8 @@ public class GameController : MonoBehaviour
             position += (Vector3.up * randomMovement);
             GameObject newWall = Instantiate(obstaclePrefab, position, Quaternion.identity);
             yield return new WaitForSeconds(timeToSpawn * multiplier);
+            if (SceneManager.GetActiveScene().name == "FireMode")
+                birds--;
         }
     }
 
